@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crocodile Facts</title>
+    <style>
+        /* Basic body styles - centering content and background */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0; 
+        }
+
+        /* Container for the fact display and button */
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+            text-align: center;
+        }
+
+        /* Style for the paragraph displaying the fact */
+        #fact {
+            font-size: 1.2em;
+            margin-bottom: 20px; 
+        }
+
+        /* Styles for the "See Another Fact" button */
+        #factButton {
+            padding: 12px 20px;
+            font-size: 1em;
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.2); /* Subtle shadow */
+        }
+
+        /* Hover effect for the button (more pronounced shadow)*/
+        #factButton:hover {
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.3); 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazing Crocodile Facts</h1>
+        <p id="fact"></p> <button id="factButton">See Another Fact</button>
+    </div>
+
+    <script>
+        // Get references to the HTML elements 
+        const factElement = document.getElementById('fact');
+        const factButton = document.getElementById('factButton');
+        
+        // Variables to track button moving behavior
+        let attempts = 0;  // Count how many times the mouse gets close to the button
+        let buttonPosition = { x: 200, y: 200 }; // Initial position 
+
+        // Array to store crocodile facts
+        const facts = [
+          "Crocodiles are reptiles that are well-adapted to living in water and on land.",
+          "They have a powerful bite, with the strongest bite force of any animal.",
+          "Crocodiles can go for months without eating.",
+          "They are found in tropical regions of Africa, Asia, Australia, and the Americas.",
+          "Crocodiles are cold-blooded animals, meaning their body temperature depends on the environment.",
+          "They have excellent night vision.",
+          "Crocodiles are carnivores, feeding on fish, birds, mammals, and other reptiles.",
+          "Female crocodiles are protective mothers and will guard their nests fiercely.",
+          "Saltwater crocodiles are the largest living reptiles.",
+          "Crocodiles have existed for over 200 million years."
+        ];
+
+        // Function to get and display a new random fact
+        function getNewFact() {
+            const randomIndex = Math.floor(Math.random() * facts.length); // Generate a random index
+            factElement.textContent = facts[randomIndex]; // Display the fact at that index
+        }
+
+        // Event Listener for button click - display a new fact
+        factButton.addEventListener('click', getNewFact);
+
+        // Event listener for mouse movement
+        document.addEventListener('mousemove', (event) => {
+            // Calculate the distance between the mouse and the button
+            const distance = Math.sqrt(
+                Math.pow(event.clientX - buttonPosition.x, 2) +
+                Math.pow(event.clientY - buttonPosition.y, 2)
+            );
+
+            // If the mouse is within 50px of the button
+            if
